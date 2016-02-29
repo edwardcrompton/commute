@@ -13,9 +13,9 @@ AppBundle\Entity\Station:
         code:
             type: string
             length: 5
-        lat:
+        latitude:
             type: decimal
-            scale: 2
-        long:
+            scale: 6
+        longitude:
             type: decimal
-            scale: 2
+            scale: 6

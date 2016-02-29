@@ -5,3 +5,7 @@ app:
 feed:
     path:      /feed
     defaults:  { _controller: AppBundle:Feed:fetch }
+map:
+    path:      /map
+    defaults:  { _controller: AppBundle:Main:render }
+    

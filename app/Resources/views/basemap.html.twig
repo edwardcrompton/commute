@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{ asset('bundles/bmatznerleaflet/css/leaflet.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}" />
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {{ stations }}
+        <div id="map">You may need to enable Javascript in your browser.</div>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+        <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
+    </body>
+</html>
