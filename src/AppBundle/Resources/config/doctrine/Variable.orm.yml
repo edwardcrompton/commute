@@ -1,0 +1,16 @@
+# src/AppBundle/Resources/config/doctrine/Variable.orm.yml
+AppBundle\Entity\Variable:
+    type: entity
+    table: variable
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 256
+        value:
+            type: string
+            length: 256
+        

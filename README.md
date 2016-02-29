@@ -26,6 +26,9 @@ http://leafletjs.com/
 Documentation for mapbox tiles
 https://www.mapbox.com/developers/api/maps/
 
+Running long processes in Symfony
+http://blog.servergrove.com/2014/04/16/symfony2-components-overview-process/
+
 To Do Next:
 
 - Station data is returned in multiple pages from the Transport API. We need to fetch all the pages.
@@ -34,3 +37,4 @@ To Do Next:
 - Perhaps the class that fetches the data from the API should be a service?
 - Create a popup so we can see which station is which on mouse over.
 - Remove the existing station icons from the map layers?
+
