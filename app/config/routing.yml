@@ -1,3 +1,7 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+# app/config/routing.yml
+feed:
+    path:      /feed
+    defaults:  { _controller: AppBundle:Feed:fetch }
