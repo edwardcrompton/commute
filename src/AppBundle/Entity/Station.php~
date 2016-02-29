@@ -1,0 +1,12 @@
+<?php
+
+// src/AppBundle/Entity/Station.php
+namespace AppBundle\Entity;
+
+class Station
+{
+    protected $name;
+    protected $code;
+    protected $lat;
+    protected $long;
+}

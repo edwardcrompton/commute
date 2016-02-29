@@ -1,0 +1,21 @@
+# src/AppBundle/Resources/config/doctrine/Station.orm.yml
+AppBundle\Entity\Station:
+    type: entity
+    table: station
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
+        code:
+            type: string
+            length: 5
+        lat:
+            type: decimal
+            scale: 2
+        long:
+            type: decimal
+            scale: 2
