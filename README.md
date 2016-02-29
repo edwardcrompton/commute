@@ -23,3 +23,12 @@ http://leafletjs.com/
 
 Documentation for mapbox tiles
 https://www.mapbox.com/developers/api/maps/
+
+To Do Next:
+
+- Station data is returned in multiple pages from the Transport API. We need to fetch all the pages.
+- Create a journey entity that stores times between a pair of stations.
+- Add a form to the map that allows a user to select a city to travel to.
+- Perhaps the class that fetches the data from the API should be a service?
+- Create a popup so we can see which station is which on mouse over.
+- Remove the existing station icons from the map layers?
