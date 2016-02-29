@@ -37,6 +37,8 @@ http://stackoverflow.com/questions/19281713/fatalerrorexception-error-call-to-a-
 - Station data is returned in multiple pages from the Transport API. We need to 
 fetch all the pages. This can be done on a cron job if we persist a variable
 between cron runs using the Variable entity I've created.
+- Can we start using services properly?
+- Can we use a settings file to put db / api data etc.
 - Create a journey entity that stores times between a pair of stations.
 - Add a form to the map that allows a user to select a city to travel to.
 - Perhaps the class that fetches the data from the API should be a service?
