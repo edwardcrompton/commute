@@ -14,7 +14,7 @@ use \Curl\Curl;
  *
  * @author edward
  */
-class GeoDetailsManager {
+class StationsFeedManager {
   
   const TRANSPORT_API_URL = 'http://transportapi.com/v3/uk/train/stations/bbox.json';
   
@@ -35,7 +35,7 @@ class GeoDetailsManager {
    * 
    * @return null|curl response
    */
-  public function getStations() {
+  public function fetchStations() {
     $requestVars = array(
       'app_id' => $this->app_id,
       'app_key' => $this->app_key,

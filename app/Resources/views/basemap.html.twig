@@ -9,10 +9,10 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
-        {{ stations }}
         <div id="map">You may need to enable Javascript in your browser.</div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <script type="text/javascript">var stations = {{ stations|raw }};</script>
         <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
     </body>

@@ -7,8 +7,9 @@ class Station
 {
     protected $name;
     protected $code;
-    protected $lat;
-    protected $long;
+    protected $latitude;
+    protected $longitude;
+
     /**
      * @var integer
      */
@@ -70,62 +71,6 @@ class Station
     {
         return $this->code;
     }
-
-    /**
-     * Set lat
-     *
-     * @param string $lat
-     * @return Station
-     */
-    public function setLat($lat)
-    {
-        $this->lat = $lat;
-
-        return $this;
-    }
-
-    /**
-     * Get lat
-     *
-     * @return string 
-     */
-    public function getLat()
-    {
-        return $this->lat;
-    }
-
-    /**
-     * Set long
-     *
-     * @param string $long
-     * @return Station
-     */
-    public function setLong($long)
-    {
-        $this->long = $long;
-
-        return $this;
-    }
-
-    /**
-     * Get long
-     *
-     * @return string 
-     */
-    public function getLong()
-    {
-        return $this->long;
-    }
-    /**
-     * @var string
-     */
-    private $latitude;
-
-    /**
-     * @var string
-     */
-    private $longitude;
-
 
     /**
      * Set latitude

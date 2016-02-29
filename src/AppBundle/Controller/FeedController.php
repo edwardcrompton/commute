@@ -3,7 +3,7 @@
 // src/AppBundle/Controller/FeedController.php
 namespace AppBundle\Controller;
 
-use AppBundle\Manager\GeoDetailsManager;
+use AppBundle\Manager\StationsFeedManager;
 use AppBundle\Entity\Station;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,8 +12,8 @@ class FeedController extends Controller
 {
   public function fetchAction()
   {
-    $geoDetailsManager = new GeoDetailsManager;
-    $response = $geoDetailsManager->getStations();
+    $geoDetailsManager = new StationsFeedManager;
+    $response = $geoDetailsManager->fetchStations();
     
     $entityManager = $this->getDoctrine()->getManager();
     

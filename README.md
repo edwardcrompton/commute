@@ -20,3 +20,6 @@ http://symfony.com/doc/2.8/book/doctrine.html
 Documentation for leafletjs    
 https://github.com/bmatzner/BmatznerLeafletBundle
 http://leafletjs.com/
+
+Documentation for mapbox tiles
+https://www.mapbox.com/developers/api/maps/
