@@ -3,6 +3,8 @@ commute
 
 A Symfony project created on February 29, 2016, 11:08 am.
 
+At the moment these are just developer notes. I'll replace with something more useful when this project is more usable.
+
 To run the server:
 php app/console server:run
 
