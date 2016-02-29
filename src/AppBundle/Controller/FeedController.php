@@ -4,17 +4,21 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Manager\StationsFeedManager;
+use AppBundle\Controller\VariableController;
 use AppBundle\Entity\Station;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
+//@todo: We should rename this and decouple it from StationsFeedManager.
 class FeedController extends Controller
 {
   public function fetchAction()
   {
+    $page = 1; // Fetch from variables.
     $geoDetailsManager = new StationsFeedManager;
-    $response = $geoDetailsManager->fetchStations();
+    $response = $geoDetailsManager->fetchStations($page);
     
+    // Fetch the doctrine manager for managing our persistent entities.
     $entityManager = $this->getDoctrine()->getManager();
     
     foreach ($response->stations as $station) {
@@ -37,6 +41,10 @@ class FeedController extends Controller
     }
     
     $entityManager->flush();
+    
+    // Keep a count of the results page we're on.
+    $variableController = new VariableController;
+    $variableController->setVar('feed_page', $page);
     
     return new Response(
       '<html><body>Stations fetched.</body></html>'
