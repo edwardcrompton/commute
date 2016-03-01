@@ -4,7 +4,7 @@
  *  Contains the VariableController class.
  */
 
-namespace AppBundle\Controller;
+namespace AppBundle\Storage\Manager;
 
 use AppBundle\Entity\Variable;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 // However, this has to extend controller to use getDoctrine and therefore
 // has to be non static. See http://symfony.com/doc/2.8/book/doctrine.html for
 // a reference to injecting Doctrine into a service.
-class VariableController extends Controller 
+class VariableManager
 {  
   /**
    * 
@@ -47,5 +47,15 @@ class VariableController extends Controller
     }
     
     return $variable->getValue();
+  }
+
+  /**
+   *
+   */
+  public function getVar($name, $value = NULL) {
+    if ($value = $this->loadVar($name)) {
+      return $value;
+    }
+
   }
 }
