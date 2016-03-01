@@ -1,3 +1,7 @@
+// We could put a closure around all this stuff as described in Drupal docs
+// here: https://www.drupal.org/node/171213. Check that this is generic js
+// practice.
+
 var mapbox_id = 'mapbox.streets';
 var mapbox_token = 'pk.eyJ1IjoiZWRkaWVjIiwiYSI6ImNpbDg1Z3BsMjAwMWl2ZmtyZm95Z21nMmsifQ.qwiuVtl85Gtwo762qubtOA';        
 var centre_lat = 52.4500;

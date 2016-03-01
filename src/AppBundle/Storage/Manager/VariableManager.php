@@ -37,7 +37,7 @@ class VariableManager
    * @param string $name
    * @return null
    */
-  protected function loadVar(string $name) {
+  protected function loadVar($name) {
     $variable = $this->getDoctrine()
       ->getRepository('AppBundle:Variable')
       ->findOneByName($name);
@@ -53,9 +53,6 @@ class VariableManager
    *
    */
   public function getVar($name, $value = NULL) {
-    if ($value = $this->loadVar($name)) {
-      return $value;
-    }
-
+    return ($this->loadVar($name) != NULL) ? $this->loadVar($name) : $value;
   }
 }

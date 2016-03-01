@@ -12,9 +12,15 @@ use Symfony\Component\HttpFoundation\Response;
 //@todo: We should rename this and decouple it from StationsFeedManager.
 class FeedController extends Controller
 {
+  const VAR_FEED_PAGE_NUMBER = 'feedcontroller_feed_page';
+
   public function fetchAction()
   {
-    $page = 1; // Fetch from variables.
+    // Use the Variable storage service to fetch the current page of results
+    // we're on.
+    $storage = $this->get('app.storage');
+    $page = $storage->getVar(self::VAR_FEED_PAGE_NUMBER, 0);
+
     $geoDetailsManager = new StationsFeedManager;
     $response = $geoDetailsManager->fetchStations($page);
     
@@ -44,10 +50,10 @@ class FeedController extends Controller
     
     // Keep a count of the results page we're on.
     $variableController = new VariableController;
-    $variableController->setVar('feed_page', $page);
+    $variableController->setVar(self::VAR_FEED_PAGE_NUMBER, $page);
     
     return new Response(
-      '<html><body>Stations fetched.</body></html>'
+      '<html><body>Page ' . $page . ' of X stations fetched.</body></html>'
     );
   }
 }
