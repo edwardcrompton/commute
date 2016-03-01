@@ -7,7 +7,6 @@
 namespace AppBundle\Storage\Manager;
 
 use AppBundle\Entity\Variable;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * Handles persistent variables.
@@ -17,19 +16,27 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 // has to be non static. See http://symfony.com/doc/2.8/book/doctrine.html for
 // a reference to injecting Doctrine into a service.
 class VariableManager
-{  
+{
+  protected $entityManager;
+
+  // Dependency injection in action. In services.yml we specify that the
+  // doctrine entity manager class should be passed in here.
+  public function __construct($entityManager)
+  {
+    $this->entityManager = $entityManager; //$entityManager->getDoctrine()->getManager();
+  }
+
   /**
    * 
    */
   public function setVar($name, $value) {
-    $entityManager = $this->getDoctrine()->getManager();
-    
     if (!$variable = $this->loadVar($name)) {
       $variable = new Variable();
     }
+    $variable->setName($name);
     $variable->setValue(serialize($value));
-    $entityManager->persist($location);
-    $entityManager->flush();
+    $this->entityManager->persist($variable);
+    $this->entityManager->flush();
   }
   
   /**
@@ -38,21 +45,26 @@ class VariableManager
    * @return null
    */
   protected function loadVar($name) {
-    $variable = $this->getDoctrine()
-      ->getRepository('AppBundle:Variable')
+    $variable = $this->entityManager->getRepository('AppBundle:Variable')
       ->findOneByName($name);
     
     if (!$variable) {
       return NULL;
     }
     
-    return $variable->getValue();
+    return $variable;
   }
 
   /**
    *
    */
   public function getVar($name, $value = NULL) {
-    return ($this->loadVar($name) != NULL) ? $this->loadVar($name) : $value;
+    $variable = $this->loadVar($name);
+
+    if ($variable != NULL) {
+      return unserialize($variable->getValue());
+    }
+
+    return $value;
   }
 }

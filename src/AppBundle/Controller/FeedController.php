@@ -4,12 +4,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Manager\StationsFeedManager;
-use AppBundle\Controller\VariableController;
 use AppBundle\Entity\Station;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-//@todo: We should rename this and decouple it from StationsFeedManager.
+//@todo: We should decouple this from StationsFeedManager.
 class FeedController extends Controller
 {
   const VAR_FEED_PAGE_NUMBER = 'feedcontroller_feed_page';
@@ -49,8 +48,7 @@ class FeedController extends Controller
     $entityManager->flush();
     
     // Keep a count of the results page we're on.
-    $variableController = new VariableController;
-    $variableController->setVar(self::VAR_FEED_PAGE_NUMBER, $page);
+    $storage->setVar(self::VAR_FEED_PAGE_NUMBER, $page);
     
     return new Response(
       '<html><body>Page ' . $page . ' of X stations fetched.</body></html>'

@@ -9,3 +9,4 @@ services:
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
     app.storage:
         class: AppBundle\Storage\Manager\VariableManager
+        arguments: ['@doctrine.orm.entity_manager']
