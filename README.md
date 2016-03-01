@@ -53,6 +53,7 @@ http://blog.servergrove.com/2014/04/16/symfony2-components-overview-process/
 To Do Next
 ----------
 
+- Ensure that the value of page is incremented as we start pulling in results.
 - We need to urgently remove API keys from the repo before someone start
 using them.
 - Check out fatal error and then read 
