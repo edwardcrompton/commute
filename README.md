@@ -50,8 +50,11 @@ https://www.mapbox.com/developers/api/maps/
 Running long processes in Symfony
 http://blog.servergrove.com/2014/04/16/symfony2-components-overview-process/
 
-To Do Next:
+To Do Next
+----------
 
+- We need to urgently remove API keys from the repo before someone start
+using them.
 - Check out fatal error and then read 
 http://symfony.com/doc/2.8/book/service_container.html and 
 http://stackoverflow.com/questions/19281713/fatalerrorexception-error-call-to-a-member-function-has-on-a-non-object
@@ -65,3 +68,17 @@ between cron runs using the Variable entity I've created.
 - Perhaps the class that fetches the data from the API should be a service?
 - Create a popup so we can see which station is which on mouse over.
 - Remove the existing station icons from the map layers?
+
+Possible reorganisation for classes
+-----------------------------------
+
+* Controller
+     * Contains only controllers for routers
+* Entity
+     * Contains only entity classes
+* Other stuff could be split by feature / functionality
+     * DataFeed : Only for stuff that handles the retrieval of data from the third party service.
+     * Storage : For stuff that handles getting and setting persistent variables in the database.
+     * Geo : Stuff that handles geographical data that has been pulled from the database and gets it ready to display on the map.
+     * Utils : Possibly for stuff that doesn't fit in anywhere else.
+ 
