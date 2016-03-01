@@ -1,14 +1,35 @@
 commute
 =======
 
-A Symfony project created on February 29, 2016, 11:08 am.
+A Symfony project created on February 29, 2016
 
 At the moment these are just developer notes. I'll replace with something more useful when this project is more usable.
 
-To run the server:
-php app/console server:run
+Installation from scratch
+-------------------------
 
-Then go to http://127.0.0.1:8000/feed
+> git clone git@github.com:edwardcrompton/commute.git
+
+> cd commute
+
+> composer install
+
+[You will be prompted to specify some local database server details]
+
+> php app/console doctrine:database:create
+
+> php app/console doctrine:schema:update --force
+
+To run the server:
+
+> php app/console server:run
+
+Then go to http://127.0.0.1:8000/feed to fetch data from transportAPI.
+
+Go to http://127.0.0.1:8000/map to view the map of stations.
+
+Developer notes
+---------------
 
 Using php-curl-class:
 https://github.com/php-curl-class/php-curl-class
@@ -19,7 +40,7 @@ http://docs.transportapi.com/index.html?raml=http://transportapi.com/v3/raml/tra
 Doctrine documentation for writing to the database:
 http://symfony.com/doc/2.8/book/doctrine.html
 
-Documentation for leafletjs    
+Documentation for leafletjs
 https://github.com/bmatzner/BmatznerLeafletBundle
 http://leafletjs.com/
 
