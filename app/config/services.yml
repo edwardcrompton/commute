@@ -10,3 +10,8 @@ services:
     app.storage:
         class: AppBundle\Storage\Manager\VariableManager
         arguments: ['@doctrine.orm.entity_manager']
+    app.curl:
+        class: Curl\Curl
+    app.stationsfeedmanager:
+        class: AppBundle\Manager\StationsFeedManager
+        arguments: ['@doctrine.orm.entity_manager', '@app.storage', '@app.curl']
