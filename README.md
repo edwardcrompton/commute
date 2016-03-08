@@ -1,6 +1,8 @@
 commute
 =======
 
+[ ![Codeship Status for edwardcrompton/commute](https://codeship.com/projects/42ff20f0-c778-0133-a720-6e2d04338f84/status?branch=master)](https://codeship.com/projects/139039)
+
 A Symfony project created on February 29, 2016
 
 At the moment these are just developer notes. I'll replace with something more useful when this project is more usable.
