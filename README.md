@@ -53,20 +53,12 @@ http://blog.servergrove.com/2014/04/16/symfony2-components-overview-process/
 To Do Next
 ----------
 
-- Ensure that the value of page is incremented as we start pulling in results.
-- We need to urgently remove API keys from the repo before someone start
+- It seems that blank responses are obtained if we make request too often.
+- We need to urgently remove API keys from the repo before someone starts
 using them.
-- Check out fatal error and then read 
-http://symfony.com/doc/2.8/book/service_container.html and 
-http://stackoverflow.com/questions/19281713/fatalerrorexception-error-call-to-a-member-function-has-on-a-non-object
-- Station data is returned in multiple pages from the Transport API. We need to 
-fetch all the pages. This can be done on a cron job if we persist a variable
-between cron runs using the Variable entity I've created.
-- Can we start using services properly?
 - Can we use a settings file to put db / api data etc.
 - Create a journey entity that stores times between a pair of stations.
 - Add a form to the map that allows a user to select a city to travel to.
-- Perhaps the class that fetches the data from the API should be a service?
 - Create a popup so we can see which station is which on mouse over.
 - Remove the existing station icons from the map layers?
 
