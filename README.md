@@ -74,4 +74,5 @@ Possible reorganisation for classes
      * Storage : For stuff that handles getting and setting persistent variables in the database.
      * Geo : Stuff that handles geographical data that has been pulled from the database and gets it ready to display on the map.
      * Utils : Possibly for stuff that doesn't fit in anywhere else.
+
  
