@@ -56,4 +56,11 @@ class SettingsManager {
   public function getFetchPeriod() {
     return $this->values['settings.config']['fetch_period'];
   }
+  
+  /**
+   * Fetch the URL of the service to get station data from.
+   */
+  public function getStationUrl() {
+    return $this->values['api']['stations_url'];
+  }
 }

@@ -78,7 +78,7 @@ class StationsFeedManager {
     // We can add an error handling function like this, but not sure how to
     // use a method on a object.
     // $this->curl->errorFunction = 
-    $this->curl->get(self::TRANSPORT_API_URL, $requestVars);
+    $this->curl->get($this->settingsManager->getStationUrl(), $requestVars);
     
     return $this->curl;
   }
