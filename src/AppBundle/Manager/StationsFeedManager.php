@@ -88,7 +88,7 @@ class StationsFeedManager {
     if (!$this->isFeedActive()) {
       // Do nothing, but return a useful message.
       return new Response(
-        '<html><body>Stations were updated less than ' . self::DATA_REFRESH_PERIOD . ' ago.</body></html>'
+        '<html><body>Stations were updated less than ' . self::DATA_REFRESH_PERIOD . ' seconds ago.</body></html>'
       );
     }
 
