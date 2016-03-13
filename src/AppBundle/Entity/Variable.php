@@ -1,21 +1,20 @@
 <?php
-
-// src/AppBundle/Entity/Variable.php
+/**
+ * @file
+ *  Contains the persistent entity class for the variable data.
+ */
 namespace AppBundle\Entity;
 
 /**
- * Description of Variable
- *
- * @author edward
+ * Entity class to store persistent data.
  */
 class Variable {
+    // The name of the variable.
     protected $name;
+    // The value of the variable.
     protected $value;
-    /**
-     * @var integer
-     */
+    // Id of the variable.
     private $id;
-
 
     /**
      * Get id

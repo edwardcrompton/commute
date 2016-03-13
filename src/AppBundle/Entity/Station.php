@@ -1,8 +1,14 @@
 <?php
+/**
+ * @file
+ *  Contains the persistent entity class for station data.
+ */
 
-// src/AppBundle/Entity/Station.php
 namespace AppBundle\Entity;
 
+/**
+ * Entity class to store persistent station data.
+ */
 class Station
 {
     protected $name;
