@@ -1,0 +1,19 @@
+# src/AppBundle/Resources/config/doctrine/Journey.orm.yml
+AppBundle\Entity\Journey:
+    type: entity
+    table: journey
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        origin_id:
+            type: integer
+        destination_id:
+            type: integer
+        duration:
+            type: decimal
+            scale: 6
+        price:
+            type: decimal
+            scale: 6

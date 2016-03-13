@@ -3,7 +3,8 @@ commute
 
 A Symfony project created on February 29, 2016
 
-At the moment these are just developer notes. I'll replace with something more useful when this project is more usable.
+At the moment these are just developer notes. I'll replace with something more 
+useful when this project is more usable.
 
 Installation from scratch
 -------------------------
