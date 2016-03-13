@@ -36,14 +36,19 @@ class StationsFeedManager {
   /**
    *
    */
-  public function __construct($entityManager, $storage, $curl) {
+  public function __construct($entityManager, $storage, $curl, $settingsManager) {
+    // Service for handling persistent variable storage.
     $this->storage = $storage;
+    // Service for managing persistent entity storage.
     $this->entityManager = $entityManager;
+    // Curl request service.
     $this->curl = $curl;
+    // Service for handling app settings.
+    $this->settingsManager = $settingsManager;
     
-    // These should be taken out and put in a config file.
-    $this->app_id = '98b1d17e';
-    $this->app_key = 'f4f457e81bb4f207fdfe0e418d5eec6f';
+    // Period in seconds for fetching new station data.
+    $this->dataRefreshPeriod = $this->settingsManager->getFetchPeriod();
+    
     $this->maxlat = '53.6';
     $this->maxlon = '-1.5';
     $this->minlat = '51.0';
@@ -61,8 +66,8 @@ class StationsFeedManager {
    */
   public function fetchStations($page = 1) {
     $requestVars = array(
-      'app_id' => $this->app_id,
-      'app_key' => $this->app_key,
+      'app_id' => $this->settingsManager->getAppId(),
+      'app_key' => $this->settingsManager->getAppKey(),
       'maxlat' => $this->maxlat,
       'maxlon' => $this->maxlon,
       'minlat' => $this->minlat,
@@ -88,7 +93,7 @@ class StationsFeedManager {
     if (!$this->isFeedActive()) {
       // Do nothing, but return a useful message.
       return new Response(
-        '<html><body>Stations were updated less than ' . self::DATA_REFRESH_PERIOD . ' seconds ago.</body></html>'
+        '<html><body>Stations were updated less than ' . $this->dataRefreshPeriod . ' seconds ago.</body></html>'
       );
     }
 
@@ -154,7 +159,7 @@ class StationsFeedManager {
       // Check if a suitable amount of time has elapsed and turn the switch on if
       // so.
       $lastComplete = $this->storage->getVar(self::VAR_FEED_TIMESTAMP, 0);
-      if (time() - $lastComplete < self::DATA_REFRESH_PERIOD) {
+      if (time() - $lastComplete < $this->dataRefreshPeriod) {
         return false;
       }
       // Turn the update feed back on and continue.

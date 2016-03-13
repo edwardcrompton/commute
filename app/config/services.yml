@@ -12,6 +12,11 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
     app.curl:
         class: Curl\Curl
+    app.yaml:
+        class: Symfony\Component\Yaml\Parser
+    app.settingsmanager:
+        class: AppBundle\Manager\SettingsManager
+        arguments: ['@app.yaml']    
     app.stationsfeedmanager:
         class: AppBundle\Manager\StationsFeedManager
-        arguments: ['@doctrine.orm.entity_manager', '@app.storage', '@app.curl']
+        arguments: ['@doctrine.orm.entity_manager', '@app.storage', '@app.curl', '@app.settingsmanager']
