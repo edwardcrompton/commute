@@ -23,7 +23,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "symfony/console": "^2.8",
         "php-curl-class/php-curl-class": "^4.10",
-        "bmatzner/leaflet-bundle": "^0.7.0"
+        "bmatzner/leaflet-bundle": "^0.7.0",
+        "symfony/yaml": "^2.8"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

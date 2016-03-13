@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e886c037d82f3c8ccbae85ac659aa4fa",
-    "content-hash": "b98477b77c38ed37dc3c0f065ac03a0b",
+    "hash": "a27deb4c0b0ecbfa372879eb01eeeeb2",
+    "content-hash": "952bd414817ee3c78ecbd9fb731e58d4",
     "packages": [
         {
             "name": "bmatzner/leaflet-bundle",
