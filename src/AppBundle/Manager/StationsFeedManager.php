@@ -40,7 +40,7 @@ class StationsFeedManager {
     $this->storage = $storage;
     $this->entityManager = $entityManager;
     $this->curl = $curl;
-
+    
     // These should be taken out and put in a config file.
     $this->app_id = '98b1d17e';
     $this->app_key = 'f4f457e81bb4f207fdfe0e418d5eec6f';
@@ -70,17 +70,12 @@ class StationsFeedManager {
       'page' => $page,
     );
 
+    // We can add an error handling function like this, but not sure how to
+    // use a method on a object.
+    // $this->curl->errorFunction = 
     $this->curl->get(self::TRANSPORT_API_URL, $requestVars);
-
-    if ($this->curl->error) {
-      // @todo: Do some more intelligent logging here instead of an echo.
-      // Also there are errors that we get that aren't curl errors.
-      echo 'Error: ' . $this->curl->errorCode . ': ' . $this->curl->errorMessage;
-      return NULL;
-    }
-    else {
-      return $this->curl->response;
-    }
+    
+    return $this->curl;
   }
 
   /**
@@ -99,12 +94,19 @@ class StationsFeedManager {
 
     $this->page = $this->storage->getVar(self::VAR_FEED_PAGE_NUMBER, 1);
 
-    $this->response = $this->fetchStations($this->page);
+    $this->curlResponse = $this->fetchStations($this->page);
+    
+    if ($this->curlResponse->response == NULL) {
+      // Do nothing, but return a useful message.
+      return new Response(
+        '<html><body>Could not obtain a response from the server. Response error code: ' . $this->curlResponse->errorCode . '</body></html>'
+      );
+    }
 
     // Check if this is the final page and set relevant vars if so.
     $this->finalPageActions();
 
-    foreach ($this->response->stations as $station) {
+    foreach ($this->curlResponse->response->stations as $station) {
       // Persist each station in the database.
       $this->persistStation($station);
     }
@@ -125,7 +127,7 @@ class StationsFeedManager {
    */
   private function finalPageActions() {
     // Find out if we're on the last page.
-    if ($this->page == ceil($this->response->total / $this->response->rpp)) {
+    if ($this->page == ceil($this->curlResponse->response->total / $this->curlResponse->response->rpp)) {
       // Turn off the fetch for next time cron is run.
       $this->storage->setVar(self::VAR_FEED_SWITCH, 0);
       // Reset the page number that we'll fetch next time.
@@ -135,7 +137,7 @@ class StationsFeedManager {
     }
     else {
       // Update the number of the page we want to get for next time.
-      $this->page = $this->response->page + 1;
+      $this->page = $this->curlResponse->response->page + 1;
     }
   }
 
