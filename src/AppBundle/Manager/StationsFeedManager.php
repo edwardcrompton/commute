@@ -1,19 +1,16 @@
 <?php
 /**
  * @file
- *  Contains the GeoDetailsManager class.
+ *  Contains the StationsFeedManager class.
  */
 
 namespace AppBundle\Manager;
 
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Station;
-use \Curl\Curl;
 
 /**
- * Description of GeoDetailsManager
- *
- * @author edward
+ * Class to manage the station data feed.
  */
 class StationsFeedManager {
 
@@ -34,7 +31,7 @@ class StationsFeedManager {
   protected $curl;
 
   /**
-   *
+   * Set up the services and vars we need to fetch from the stations feed.
    */
   public function __construct($entityManager, $storage, $curl, $settingsManager) {
     // Service for handling persistent variable storage.

@@ -63,4 +63,11 @@ class SettingsManager {
   public function getStationUrl() {
     return $this->values['api']['stations_url'];
   }
+  
+  /**
+   * Fetch the URL of the service to get the journey time from.
+   */
+  public function getJourneyUrl() {
+    return $this->values['api']['journey_url'];
+  }
 }
