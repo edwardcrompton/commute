@@ -54,6 +54,8 @@ http://blog.servergrove.com/2014/04/16/symfony2-components-overview-process/
 To Do Next
 ----------
 
+- Work out how it's possible to get the journey time between a pair of stations
+using the transportapi.
 - It seems that blank responses are obtained if we make request too often.
 - Create a journey entity that stores times between a pair of stations.
 - Add a form to the map that allows a user to select a city to travel to.
