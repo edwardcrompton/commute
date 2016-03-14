@@ -55,9 +55,6 @@ To Do Next
 ----------
 
 - It seems that blank responses are obtained if we make request too often.
-- We need to urgently remove API keys from the repo before someone starts
-using them. Code is written to fetch the vars from a yaml file, put we need to 
-remove history from the git repo.
 - Create a journey entity that stores times between a pair of stations.
 - Add a form to the map that allows a user to select a city to travel to.
 - Create a popup so we can see which station is which on mouse over.
