@@ -22,3 +22,4 @@ AppBundle\Entity\Station:
         route:
             type: integer
             length: 6
+            nullable: TRUE
