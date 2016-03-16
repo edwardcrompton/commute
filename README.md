@@ -56,6 +56,9 @@ To Do Next
 
 - Work out how it's possible to get the journey time between a pair of stations
 using the transportapi.
+- It might be easier to use this http://traintimes.org.uk/. Fill in the form to see the
+nice URL request format.
+- There's a Symfony screen scraper here: https://github.com/FriendsOfPHP/Goutte
 - It seems that blank responses are obtained if we make request too often.
 - Create a journey entity that stores times between a pair of stations.
 - Add a form to the map that allows a user to select a city to travel to.
