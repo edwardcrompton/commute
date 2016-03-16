@@ -24,7 +24,8 @@
         "symfony/console": "^2.8",
         "php-curl-class/php-curl-class": "^4.10",
         "bmatzner/leaflet-bundle": "^0.7.0",
-        "symfony/yaml": "^2.8"
+        "symfony/yaml": "^2.8",
+        "fabpot/goutte": "~3.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

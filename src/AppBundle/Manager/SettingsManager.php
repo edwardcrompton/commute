@@ -68,6 +68,8 @@ class SettingsManager {
    * Fetch the URL of the service to get the journey time from.
    */
   public function getJourneyUrl() {
-    return $this->values['api']['journey_url'];
+    // @todo: Add this to the settings file.
+    //return $this->values['api']['journey_url'];
+    return 'http://transportapi.com/v3/uk/train/station/';
   }
 }
