@@ -19,3 +19,6 @@ AppBundle\Entity\Station:
         longitude:
             type: decimal
             scale: 6
+        route:
+            type: integer
+            length: 6

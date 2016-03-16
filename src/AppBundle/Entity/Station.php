@@ -15,6 +15,7 @@ class Station
     protected $code;
     protected $latitude;
     protected $longitude;
+    protected $route;
 
     /**
      * @var integer
@@ -122,5 +123,28 @@ class Station
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+    /**
+     * Set route
+     *
+     * @param integer $route
+     * @return Station
+     */
+    public function setRoute($route)
+    {
+        $this->route = $route;
+
+        return $this;
+    }
+
+    /**
+     * Get route
+     *
+     * @return integer 
+     */
+    public function getRoute()
+    {
+        return $this->route;
     }
 }

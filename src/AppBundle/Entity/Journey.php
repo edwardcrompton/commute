@@ -12,10 +12,9 @@ namespace AppBundle\Entity;
 class Journey
 {
     protected $id;
-    protected $origin_id;
-    protected $destination_id;
+    private $route;
+    private $sequence;
     protected $duration;
-    protected $price;
 
     /**
      * Get id
@@ -25,52 +24,6 @@ class Journey
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set origin_id
-     *
-     * @param integer $originId
-     * @return Journey
-     */
-    public function setOriginId($originId)
-    {
-        $this->origin_id = $originId;
-
-        return $this;
-    }
-
-    /**
-     * Get origin_id
-     *
-     * @return integer 
-     */
-    public function getOriginId()
-    {
-        return $this->origin_id;
-    }
-
-    /**
-     * Set destination_id
-     *
-     * @param integer $destinationId
-     * @return Journey
-     */
-    public function setDestinationId($destinationId)
-    {
-        $this->destination_id = $destinationId;
-
-        return $this;
-    }
-
-    /**
-     * Get destination_id
-     *
-     * @return integer 
-     */
-    public function getDestinationId()
-    {
-        return $this->destination_id;
     }
 
     /**
@@ -97,25 +50,48 @@ class Journey
     }
 
     /**
-     * Set price
+     * Set route
      *
-     * @param string $price
+     * @param integer $route
      * @return Journey
      */
-    public function setPrice($price)
+    public function setRoute($route)
     {
-        $this->price = $price;
+        $this->route = $route;
 
         return $this;
     }
 
     /**
-     * Get price
+     * Get route
      *
-     * @return string 
+     * @return integer 
      */
-    public function getPrice()
+    public function getRoute()
     {
-        return $this->price;
+        return $this->route;
+    }
+
+    /**
+     * Set sequence
+     *
+     * @param integer $sequence
+     * @return Journey
+     */
+    public function setSequence($sequence)
+    {
+        $this->sequence = $sequence;
+
+        return $this;
+    }
+
+    /**
+     * Get sequence
+     *
+     * @return integer 
+     */
+    public function getSequence()
+    {
+        return $this->sequence;
     }
 }

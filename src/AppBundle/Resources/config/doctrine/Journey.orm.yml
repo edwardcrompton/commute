@@ -7,13 +7,12 @@ AppBundle\Entity\Journey:
             type: integer
             generator: { strategy: AUTO }
     fields:
-        origin_id:
+        route:
             type: integer
-        destination_id:
-            type: integer
-        duration:
-            type: decimal
             scale: 6
-        price:
+        sequence:
+            type: integer
+            scale: 6
+        duration:
             type: decimal
             scale: 6

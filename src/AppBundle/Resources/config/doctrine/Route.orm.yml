@@ -1,0 +1,13 @@
+# src/AppBundle/Resources/config/doctrine/Route.orm.yml
+AppBundle\Entity\Route:
+    type: entity
+    table: route
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        origin_id:
+            type: integer
+        destination_id:
+            type: integer
