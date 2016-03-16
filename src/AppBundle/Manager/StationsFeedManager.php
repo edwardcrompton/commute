@@ -29,6 +29,11 @@ class StationsFeedManager {
   protected $storage;
   protected $entityManager;
   protected $curl;
+  
+  // Flag to say whether we had an error.
+  protected $error = false;
+  // Flag to say whether we did anything useful.
+  protected $productive = false;
 
   /**
    * Set up the services and vars we need to fetch from the stations feed.
@@ -88,6 +93,8 @@ class StationsFeedManager {
   public function feedController()
   {
     if (!$this->isFeedActive()) {
+      // Set a flag to say that we can do something else instead.
+      
       // Do nothing, but return a useful message.
       return new Response(
         '<html><body>Stations were updated less than ' . $this->dataRefreshPeriod . ' seconds ago.</body></html>'
@@ -99,6 +106,8 @@ class StationsFeedManager {
     $this->curlResponse = $this->fetchStations($this->page);
     
     if ($this->curlResponse->response == NULL) {
+      // Set the flag to say that an error occured.
+      $this->error = true;
       // Do nothing, but return a useful message.
       return new Response(
         '<html><body>Could not obtain a response from the server. Response error code: ' . $this->curlResponse->errorCode . '</body></html>'
@@ -117,7 +126,8 @@ class StationsFeedManager {
 
     // Keep a count of the results page we're on.
     $this->storage->setVar(self::VAR_FEED_PAGE_NUMBER, $this->page);
-
+    // Set the flag to say that something happened.
+    $this->productive = true;
     return new Response(
       '<html><body>Page ' . $this->page . ' of X stations fetched.</body></html>'
     );
@@ -186,5 +196,19 @@ class StationsFeedManager {
     $location->setLatitude($station->latitude);
 
     $this->entityManager->persist($location);
+  }
+  
+  /**
+   * Flag wrapper to say if the feed action was productive.
+   */
+  public function wasProductive() {
+    return $this->productive;
+  }
+  
+  /**
+   * Flag wrapper to say if an error was thrown.
+   */
+  public function wasError() {
+    return $this->error;
   }
 }

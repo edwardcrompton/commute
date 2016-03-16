@@ -16,7 +16,16 @@ services:
         class: Symfony\Component\Yaml\Parser
     app.settingsmanager:
         class: AppBundle\Manager\SettingsManager
-        arguments: ['@app.yaml']    
+        arguments: ['@app.yaml']
+    app.feedmanager:
+        class: AppBundle\Manager\FeedManager
+        arguments: ['@app.stationsfeedmanager']
     app.stationsfeedmanager:
         class: AppBundle\Manager\StationsFeedManager
         arguments: ['@doctrine.orm.entity_manager', '@app.storage', '@app.curl', '@app.settingsmanager']
+    app.routefeedmanager:
+        class: AppBundle\Manager\RouteFeedManager
+        arguments: ['@app.stationsmanager']
+    app.stationsmanager:
+        class: AppBundle\Manager\StationsManager
+        arguments: ['@doctrine.orm.entity_manager']

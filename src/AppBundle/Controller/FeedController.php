@@ -13,13 +13,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  * @package AppBundle\Controller
  */
 class FeedController extends Controller
-{
+{ 
   /**
    * Action method for the /feed route.
    *
    * @return \AppBundle\Manager\Response
    */
   public function fetchAction() {
-    return $this->get('app.stationsfeedmanager')->feedController();
+    $response = $this->get('app.feedmanager')->feedController();
+    if (empty($response)) {
+      // We need return a reponse here.
+    }
   }
 }

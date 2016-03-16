@@ -54,6 +54,12 @@ http://blog.servergrove.com/2014/04/16/symfony2-components-overview-process/
 To Do Next
 ----------
 
+- Build up a set of routes from end to end. A unique route is a unique combination 
+of origin destination for a whole service.
+- For a route we store the origin and the destination station ids and the route id.
+- We update each station with the id of the route it's on and the sequence in the route.
+- Each station also has a time associated with it to say how long it takes to depart 
+the next station in the direction of travel.
 - Work out how it's possible to get the journey time between a pair of stations
 using the transportapi.
 - It might be easier to use this http://traintimes.org.uk/. Fill in the form to see the
