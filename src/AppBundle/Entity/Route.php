@@ -71,7 +71,6 @@ class Route
     public function setDestinationId($destinationId)
     {
         $this->destination_id = $destinationId;
-
         return $this;
     }
 

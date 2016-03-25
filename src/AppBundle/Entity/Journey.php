@@ -94,4 +94,32 @@ class Journey
     {
         return $this->sequence;
     }
+    /**
+     * @var integer
+     */
+    private $station_id;
+
+
+    /**
+     * Set station_id
+     *
+     * @param integer $stationId
+     * @return Journey
+     */
+    public function setStationId($stationId)
+    {
+        $this->station_id = $stationId;
+
+        return $this;
+    }
+
+    /**
+     * Get station_id
+     *
+     * @return integer 
+     */
+    public function getStationId()
+    {
+        return $this->station_id;
+    }
 }

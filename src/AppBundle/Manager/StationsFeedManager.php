@@ -15,7 +15,7 @@ use AppBundle\Entity\Station;
 class StationsFeedManager {
 
   // The API URL.
-  const TRANSPORT_API_URL = 'http://transportapi.com/v3/uk/train/stations/bbox.json';
+  //const TRANSPORT_API_URL = 'http://transportapi.com/v3/uk/train/stations/bbox.json';
   // The name of the persistent var to store the current feed page in.
   const VAR_FEED_PAGE_NUMBER = 'feedcontroller_feed_page';
   // The name of the persistent var to store the feed on / off flag in.
@@ -23,7 +23,7 @@ class StationsFeedManager {
   // The name of the persistent var to store the feed timestamp in.
   const VAR_FEED_TIMESTAMP = 'feedcrontroller_feed_timestamp';
   // Period over which data refreshing runs in seconds.
-  const DATA_REFRESH_PERIOD = 2592000;
+  //const DATA_REFRESH_PERIOD = 2592000;
 
   // Services that will be injected into this class.
   protected $storage;

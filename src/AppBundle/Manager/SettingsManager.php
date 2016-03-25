@@ -72,4 +72,20 @@ class SettingsManager {
     //return $this->values['api']['journey_url'];
     return 'http://transportapi.com/v3/uk/train/station/';
   }
+  
+  /**
+   * 
+   */
+  public function getTimeTableUrl($code, $date, $time) {
+    $base_url = $this->values['api']['base_url'];
+    return  $base_url . '/uk/train/station/' . $code . '/' . $date . '/' . $time . '/timetable.json';
+  }
+  
+  /**
+   * 
+   */
+  public function getServiceUrl($service, $date, $time) {
+    $base_url = $this->values['api']['base_url'];
+    return  $base_url . '/uk/train/station/' . $service . '/' . $date . '/' . $time . '/timetable.json';
+  }
 }

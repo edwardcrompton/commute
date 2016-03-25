@@ -21,22 +21,29 @@ class StationsManager {
     $this->entityManager = $entityManager; //$entityManager->getDoctrine()->getManager();
   }
   
+  public function loadStationObjects() {
+    $stations = $this->entityManager
+      ->getRepository('AppBundle:Station')
+      ->findAll();
+    return $stations;
+  }
+  
   /**
    * Gets an array of stations from the database.
    * 
    * @return string
    */
-  public function loadStations() {
-    $stations = $this->entityManager
-      ->getRepository('AppBundle:Station')
-      ->findAll();
+  public function loadStationArray() {
+    $stations = $this->loadStationObjects();
     
     $stationData = array();
     // We need to unpack the station objects into an array because a lot of 
     // their properties are protected.
     foreach ($stations as $station) {
       $stationData[$station->getCode()] = array(
+        'id' => $station->getId(),
         'name' => $station->getName(),
+        'code' => $station->getCode(),
         'latitude' => $station->getLatitude(),
         'longitude' => $station->getLongitude(),
       );
@@ -50,7 +57,7 @@ class StationsManager {
    * @return string
    */
   public function getJsonStations() {
-    $stations = $this->loadStations();
+    $stations = $this->loadStationArray();
     return json_encode($stations);
   }
 }

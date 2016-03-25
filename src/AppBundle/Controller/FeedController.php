@@ -21,8 +21,6 @@ class FeedController extends Controller
    */
   public function fetchAction() {
     $response = $this->get('app.feedmanager')->feedController();
-    if (empty($response)) {
-      // We need return a reponse here.
-    }
+    return $response;
   }
 }

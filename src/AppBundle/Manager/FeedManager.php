@@ -15,8 +15,9 @@ class FeedManager {
    * 
    * @param type $feedManager
    */
-  public function __construct($stationsFeedManager) {
+  public function __construct($stationsFeedManager, $routeFeedManager) {
     $this->stationsFeedManager = $stationsFeedManager;
+    $this->routeFeedManager = $routeFeedManager;
   }
   
   /**
@@ -30,7 +31,8 @@ class FeedManager {
     else {
       // We'll do something else because we're not fetching stations at the
       // current point in time.
-      return \Symfony\Component\HttpFoundation\Response::
+      $routesResponse = $this->routeFeedManager->fetchRoutes();
+      return $routesResponse;
     }
   }
   

@@ -16,3 +16,6 @@ AppBundle\Entity\Journey:
         duration:
             type: decimal
             scale: 6
+        station_id:
+            type: integer
+            scale: 6

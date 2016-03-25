@@ -54,6 +54,8 @@ http://blog.servergrove.com/2014/04/16/symfony2-components-overview-process/
 To Do Next
 ----------
 
+- Working in RouteFeedManager. Have set some terminating stations in the settings.
+It seems this is a more practical way to do it than looking through all the stations.
 - Build up a set of routes from end to end. A unique route is a unique combination 
 of origin destination for a whole service.
 - For a route we store the origin and the destination station ids and the route id.
