@@ -1,18 +1,21 @@
 <?php
+/**
+ * @file
+ *  Contains the BatchController class.
+ */
 
-// src/AppBundle/Controller/FeedController.php
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * Class FeedController
+ * Class BatchController
  *
- * Controller for the /feed route.
+ * Controller for the /batch route.
  *
  * @package AppBundle\Controller
  */
-class FeedController extends Controller
+class BatchController extends Controller
 { 
   /**
    * Action method for the /feed route.
@@ -20,7 +23,7 @@ class FeedController extends Controller
    * @return \AppBundle\Manager\Response
    */
   public function fetchAction() {
-    $response = $this->get('app.feedmanager')->feedController();
+    $response = $this->get('app.batchmanager')->feedController();
     return $response;
   }
 }

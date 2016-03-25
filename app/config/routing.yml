@@ -3,8 +3,8 @@ app:
     type:     annotation
 # app/config/routing.yml
 feed:
-    path:      /feed
-    defaults:  { _controller: AppBundle:Feed:fetch }
+    path:      /batch
+    defaults:  { _controller: AppBundle:Batch:fetch }
 map:
     path:      /map
     defaults:  { _controller: AppBundle:Main:render }

@@ -9,7 +9,7 @@ namespace AppBundle\Manager;
 /**
  * Handles periodic tasks that involve fetching data from the feed.
  */
-class FeedManager {
+class BatchManager {
   /**
    * Constructor.
    * 
@@ -35,6 +35,4 @@ class FeedManager {
       return $routesResponse;
     }
   }
-  
-  
 }

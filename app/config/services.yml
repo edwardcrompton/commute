@@ -17,8 +17,8 @@ services:
     app.settingsmanager:
         class: AppBundle\Manager\SettingsManager
         arguments: ['@app.yaml']
-    app.feedmanager:
-        class: AppBundle\Manager\FeedManager
+    app.batchmanager:
+        class: AppBundle\Manager\BatchManager
         arguments: ['@app.stationsfeedmanager', '@app.routefeedmanager']
     app.stationsfeedmanager:
         class: AppBundle\Manager\StationsFeedManager
