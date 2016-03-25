@@ -24,15 +24,24 @@ class BatchManager {
    * The main routing function for the FeedController route.
    */
   public function feedController() {
-    $response = $this->stationsFeedManager->feedController();
+    
     if ($this->stationsFeedManager->wasError() || $this->stationsFeedManager->wasProductive()) {
+      $response = $this->stationsFeedManager->feedController();
       return $response;
     }
-    else {
-      // We'll do something else because we're not fetching stations at the
-      // current point in time.
-      $routesResponse = $this->routeFeedManager->fetchRoutes();
+    else if (!$this->routeFeedManager->areServicesFetched()) {
+      // The stations have been fetched correctly, but we haven't fetched the 
+      // rail services yet.
+      $servicesResponse = $this->routeFeedManager->fetchServiceIds();
+      return $servicesResponse;
+    }
+    else if (!$this->routeFeedManager->areServiceDetailsFetched()) {
+      // We're now ready to fetch the route details themselves.
+      $routesResponse = $this->routeFeedManager->fetchRouteDetails();
       return $routesResponse;
+    }
+    else {
+      // Do something default for when all details have been fetched.
     }
   }
 }

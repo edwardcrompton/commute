@@ -7,6 +7,8 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+#Utility Services
     app.storage:
         class: AppBundle\Storage\Manager\VariableManager
         arguments: ['@doctrine.orm.entity_manager']
@@ -17,15 +19,21 @@ services:
     app.settingsmanager:
         class: AppBundle\Manager\SettingsManager
         arguments: ['@app.yaml']
-    app.batchmanager:
-        class: AppBundle\Manager\BatchManager
-        arguments: ['@app.stationsfeedmanager', '@app.routefeedmanager']
+#Feed Managers
+    app.basefeedmanager:
+        class: AppBundle\Manager\BaseFeedManager
+        arguments: ['@doctrine.orm.entity_manager', '@app.storage', '@app.curl', '@app.settingsmanager']
     app.stationsfeedmanager:
         class: AppBundle\Manager\StationsFeedManager
-        arguments: ['@doctrine.orm.entity_manager', '@app.storage', '@app.curl', '@app.settingsmanager']
+        arguments: ['@app.basefeedmanager']
     app.routefeedmanager:
         class: AppBundle\Manager\RouteFeedManager
-        arguments: ['@app.stationsmanager', '@app.settingsmanager', '@app.curl']
+        arguments: ['@app.basefeedmanager', '@app.stationsmanager']
+#Data handlers
     app.stationsmanager:
         class: AppBundle\Manager\StationsManager
         arguments: ['@doctrine.orm.entity_manager']
+#Other
+    app.batchmanager:
+        class: AppBundle\Manager\BatchManager
+        arguments: ['@app.stationsfeedmanager', '@app.routefeedmanager']

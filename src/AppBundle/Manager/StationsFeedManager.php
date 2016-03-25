@@ -14,8 +14,6 @@ use AppBundle\Entity\Station;
  */
 class StationsFeedManager {
 
-  // The API URL.
-  //const TRANSPORT_API_URL = 'http://transportapi.com/v3/uk/train/stations/bbox.json';
   // The name of the persistent var to store the current feed page in.
   const VAR_FEED_PAGE_NUMBER = 'feedcontroller_feed_page';
   // The name of the persistent var to store the feed on / off flag in.
@@ -24,32 +22,23 @@ class StationsFeedManager {
   const VAR_FEED_TIMESTAMP = 'feedcrontroller_feed_timestamp';
   // Period over which data refreshing runs in seconds.
   //const DATA_REFRESH_PERIOD = 2592000;
-
-  // Services that will be injected into this class.
-  protected $storage;
-  protected $entityManager;
-  protected $curl;
   
   // Flag to say whether we had an error.
   protected $error = false;
   // Flag to say whether we did anything useful.
   protected $productive = false;
+  
+  // Base feed manager that will get injected.
+  protected $baseServices;
 
   /**
    * Set up the services and vars we need to fetch from the stations feed.
    */
-  public function __construct($entityManager, $storage, $curl, $settingsManager) {
-    // Service for handling persistent variable storage.
-    $this->storage = $storage;
-    // Service for managing persistent entity storage.
-    $this->entityManager = $entityManager;
-    // Curl request service.
-    $this->curl = $curl;
-    // Service for handling app settings.
-    $this->settingsManager = $settingsManager;
+  public function __construct($baseFeedManager) {
+    $this->baseServices = $baseFeedManager;
     
     // Period in seconds for fetching new station data.
-    $this->dataRefreshPeriod = $this->settingsManager->getFetchPeriod();
+    $this->dataRefreshPeriod = $this->baseServices->settingsManager->getFetchPeriod();
     
     $this->maxlat = '53.6';
     $this->maxlon = '-1.5';
@@ -68,8 +57,8 @@ class StationsFeedManager {
    */
   public function fetchStations($page = 1) {
     $requestVars = array(
-      'app_id' => $this->settingsManager->getAppId(),
-      'app_key' => $this->settingsManager->getAppKey(),
+      'app_id' => $this->baseServices->settingsManager->getAppId(),
+      'app_key' => $this->baseServices->settingsManager->getAppKey(),
       'maxlat' => $this->maxlat,
       'maxlon' => $this->maxlon,
       'minlat' => $this->minlat,
@@ -80,9 +69,9 @@ class StationsFeedManager {
     // We can add an error handling function like this, but not sure how to
     // use a method on a object.
     // $this->curl->errorFunction = 
-    $this->curl->get($this->settingsManager->getStationUrl(), $requestVars);
+    $this->baseServices->requestManager->get($this->baseServices->settingsManager->getStationUrl(), $requestVars);
     
-    return $this->curl;
+    return $this->baseServices->requestManager;
   }
 
   /**
@@ -101,7 +90,7 @@ class StationsFeedManager {
       );
     }
 
-    $this->page = $this->storage->getVar(self::VAR_FEED_PAGE_NUMBER, 1);
+    $this->page = $this->baseServices->storageManager->getVar(self::VAR_FEED_PAGE_NUMBER, 1);
 
     $this->curlResponse = $this->fetchStations($this->page);
     
@@ -122,10 +111,10 @@ class StationsFeedManager {
       $this->persistStation($station);
     }
 
-    $this->entityManager->flush();
+    $this->baseServices->entityManager->flush();
 
     // Keep a count of the results page we're on.
-    $this->storage->setVar(self::VAR_FEED_PAGE_NUMBER, $this->page);
+    $this->baseServices->storageManager->setVar(self::VAR_FEED_PAGE_NUMBER, $this->page);
     // Set the flag to say that something happened.
     $this->productive = true;
     return new Response(
@@ -162,15 +151,15 @@ class StationsFeedManager {
   private function isFeedActive() {
     // Check here if VAR_FEED_SWITCH is 1 (on), or if it's 0 (off), check if a
     // suitable period of time has elapsed and then turn it on.
-    if ($this->storage->getVar(self::VAR_FEED_SWITCH, 1) == 0) {
+    if ($this->baseServices->storageManager->getVar(self::VAR_FEED_SWITCH, 1) == 0) {
       // Check if a suitable amount of time has elapsed and turn the switch on if
       // so.
-      $lastComplete = $this->storage->getVar(self::VAR_FEED_TIMESTAMP, 0);
+      $lastComplete = $this->baseServices->storageManager->getVar(self::VAR_FEED_TIMESTAMP, 0);
       if (time() - $lastComplete < $this->dataRefreshPeriod) {
         return false;
       }
       // Turn the update feed back on and continue.
-      $this->storage->getVar(self::VAR_FEED_SWITCH, 1);
+      $this->baseServices->storageManager->getVar(self::VAR_FEED_SWITCH, 1);
     }
     return true;
   }
@@ -182,7 +171,7 @@ class StationsFeedManager {
    */
   private function persistStation($station) {
     // See if this station already exists in the database.
-    $location = $this->entityManager->getRepository('AppBundle:Station')
+    $location = $this->baseServices->entityManager->getRepository('AppBundle:Station')
       ->findOneByCode($station->station_code);
 
     if (!$location) {
@@ -195,7 +184,7 @@ class StationsFeedManager {
     $location->setLongitude($station->longitude);
     $location->setLatitude($station->latitude);
 
-    $this->entityManager->persist($location);
+    $this->baseServices->entityManager->persist($location);
   }
   
   /**
