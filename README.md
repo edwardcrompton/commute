@@ -17,6 +17,8 @@ Installation from scratch
 
 [You will be prompted to specify some local database server details]
 
+Add details of the local database user here app/config/parameters.yml but don't create the database manually.
+
 > php app/console doctrine:database:create
 
 > php app/console doctrine:schema:update --force
