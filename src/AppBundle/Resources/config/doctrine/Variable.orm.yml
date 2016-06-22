@@ -11,6 +11,5 @@ AppBundle\Entity\Variable:
             type: string
             length: 256
         value:
-            type: string
-            length: 256
+            type: text
         

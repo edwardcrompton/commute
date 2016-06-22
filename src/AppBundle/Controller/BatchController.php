@@ -18,7 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class BatchController extends Controller
 { 
   /**
-   * Action method for the /feed route.
+   * Action method for the /batch route.
    *
    * @return \AppBundle\Manager\Response
    */

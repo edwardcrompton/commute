@@ -11,23 +11,27 @@ use AppBundle\Entity\Variable;
 /**
  * Handles persistent variables.
  */
-//@todo: Many of these classes feel as though they should be static.
-// However, this has to extend controller to use getDoctrine and therefore
-// has to be non static. See http://symfony.com/doc/2.8/book/doctrine.html for
-// a reference to injecting Doctrine into a service.
 class VariableManager
 {
   protected $entityManager;
 
-  // Dependency injection in action. In services.yml we specify that the
-  // doctrine entity manager class should be passed in here.
+  /**
+   * Constructor to which the entity manager class gets injected.
+   * 
+   * @param type $entityManager
+   */
   public function __construct($entityManager)
   {
-    $this->entityManager = $entityManager; //$entityManager->getDoctrine()->getManager();
+    $this->entityManager = $entityManager;
   }
 
   /**
+   * Sets the value for a new or existing persistent variable.
    * 
+   * @param string $name
+   *  The name of the persistent variable.
+   * @param mixed $value
+   *  A value that can be serialised and stored in the database.
    */
   public function setVar($name, $value) {
     if (!$variable = $this->loadVar($name)) {
@@ -40,9 +44,12 @@ class VariableManager
   }
   
   /**
+   * Helper method to load a variable from the database.
    * 
    * @param string $name
-   * @return null
+   *  The name of the variable.
+   * 
+   * @return mixed or null if the variable cannot be fetched.
    */
   protected function loadVar($name) {
     $variable = $this->entityManager->getRepository('AppBundle:Variable')
@@ -56,7 +63,17 @@ class VariableManager
   }
 
   /**
-   *
+   * Gets the value of an existing persistent variable or a default value if it
+   * has not yet been set.
+   * 
+   * @param string $name
+   *  The name of the variable.
+   * @param string $value
+   *  The value to return if the variable does not exist. 
+   * 
+   * @return mixed
+   *  The value of the variable returned from the database, or the default 
+   *  value.
    */
   public function getVar($name, $value = NULL) {
     $variable = $this->loadVar($name);

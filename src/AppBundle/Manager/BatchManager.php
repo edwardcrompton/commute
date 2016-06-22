@@ -29,9 +29,9 @@ class BatchManager {
       $response = $this->stationsFeedManager->feedController();
       return $response;
     }
-    else if (!$this->routeFeedManager->areServicesFetched()) {
+    else if (!$this->routeFeedManager->areServiceIdsFetched()) {
       // The stations have been fetched correctly, but we haven't fetched the 
-      // rail services yet.
+      // rail service ids yet.
       $servicesResponse = $this->routeFeedManager->fetchServiceIds();
       return $servicesResponse;
     }

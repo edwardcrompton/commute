@@ -54,12 +54,16 @@ http://blog.servergrove.com/2014/04/16/symfony2-components-overview-process/
 To Do Next
 ----------
 
+- Work out how to load a service / route from the database based on its origin
+AND destination. May have to do some query building with doctrine.
 - Working in RouteFeedManager. Have set some terminating stations in the settings.
 It seems this is a more practical way to do it than looking through all the stations.
 - Build up a set of routes from end to end. A unique route is a unique combination 
 of origin destination for a whole service.
 - For a route we store the origin and the destination station ids and the route id.
 - We update each station with the id of the route it's on and the sequence in the route.
+- If a station is on more than one route, we save as two separate stations? We'll 
+know it's the same station in reality because it will have a unique station code.
 - Each station also has a time associated with it to say how long it takes to depart 
 the next station in the direction of travel.
 - Work out how it's possible to get the journey time between a pair of stations

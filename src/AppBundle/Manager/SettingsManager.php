@@ -86,6 +86,6 @@ class SettingsManager {
    */
   public function getServiceUrl($service, $date, $time) {
     $base_url = $this->values['api']['base_url'];
-    return  $base_url . '/uk/train/station/' . $service . '/' . $date . '/' . $time . '/timetable.json';
+    return  $base_url . '/uk/train/service/' . $service . '/' . $date . '/' . $time . '/timetable.json';
   }
 }
