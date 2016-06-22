@@ -1,3 +1,12 @@
 api:
     app_id: 98b1d17e
-    app_key: f4f457e81bb4f207fdfe0e418d5eec6f
+    app_key: 4009b60a1bc2a4dd7fb75399012cfa0f
+    stations_url: http://transportapi.com/v3/uk/train/stations/bbox.json
+    journey_url: xxx.json
+    base_url: http://transportapi.com/v3
+settings.config:
+    fetch_period: 2592000
+station.origins:
+    [HHD, PWL, LLJ, LLD, CTR, FGW, FGH, SHR, BHR, BHM]
+    
+    
